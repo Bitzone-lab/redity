@@ -1,5 +1,11 @@
-function data(): string {
-    return 'Hello word'
-}
+import store from './store'
+import types from './types'
+import getRenderTools from './getRenderTools'
 
-export default data
+const { registers } = store()
+
+const { connect, Capsule, useRender } = types(registers)
+
+const { render, asyncRender } = getRenderTools(registers)
+
+export { connect, Capsule, useRender, render, asyncRender }
