@@ -2,6 +2,7 @@ import createCapsule from "./createCapsule";
 import { Hook, Connection, Encapsulation } from '../store'
 import createConnect from "./createConnect";
 import createUseRender from "./createUseRender";
+import useLocal from './useLocal'
 
 export default function types (registers: Map<string, Hook | Connection | Encapsulation>) {
   const Capsule = createCapsule(registers)
@@ -11,6 +12,7 @@ export default function types (registers: Map<string, Hook | Connection | Encaps
   return {
     useRender,
     connect,
-    Capsule
+    Capsule,
+    useLocal
   }
 }

@@ -1,5 +1,5 @@
 import React, { ReactNode, Fragment, useEffect } from 'react'
-import useForceRender from '../hooks/useForceRender'
+import { useForceRender } from '../hooks/useForceRenders'
 import { Hook, Connection, Encapsulation } from '../store'
 import { __keyNameIndex__ } from '../utils/tools'
 
@@ -28,14 +28,13 @@ export default function createCapsule(registers: Map<string, Hook | Connection |
      * </Capsule>
      */
     function Capsule(props: PropsCapsule): JSX.Element {
-        const [hash, forceRender ] = useForceRender()
+        const [, forceRender ] = useForceRender()
 
         function setRegister() {
             const encapsulation: Encapsulation = {
                 keyName: props.keyName,
                 index: props.index,
-                render: forceRender,
-                hash
+                render: forceRender
             }
 
             registers.set(__keyNameIndex__(props.keyName, props.index), encapsulation)

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import useForceRender from '../hooks/useForceRender'
+import { useForceRender } from '../hooks/useForceRenders'
 import { Hook, Connection, Encapsulation } from '../store'
 import { __keyNameIndex__ } from '../utils/tools'
 
@@ -10,16 +10,15 @@ export default function createUseRender(registers: Map<string, Hook | Connection
      * @param index its additional
      */
     function useRender(keyName: string, index?: number | string): void {
-        const [hash, forceRender] = useForceRender()
+        const [, forceRender] = useForceRender()
 
         function setRegister() {
             const hook: Hook = {
                 keyName,
                 index,
-                render: forceRender,
-                hash
+                render: forceRender
             }
-            registers.set(keyName, hook)
+            registers.set(__keyNameIndex__(keyName, index), hook)
         }
 
         function deleteRegister() {

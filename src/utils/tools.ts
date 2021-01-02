@@ -1,7 +1,8 @@
-export function __keyNameIndex__(keyName: string, index?: string | number) {
-    if (index === undefined) {
+export const __separator__ = `__$$__`
+
+export function __keyNameIndex__(keyName: string, index?: string | number | null) {
+    if (index === undefined || index === null || index === '') {
         return keyName
-    } else {
-        return keyName + '__' + index
     }
+    return keyName + __separator__ + index
 }

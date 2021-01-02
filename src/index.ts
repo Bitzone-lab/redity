@@ -1,11 +1,24 @@
 import store from './store'
 import types from './types'
-import getRenderTools from './getRenderTools'
+import renderingTypes from './rendering_types'
 
 const { registers } = store()
+const { connect, Capsule, useRender, useLocal } = types(registers)
+const { render, renders } = renderingTypes(registers)
 
-const { connect, Capsule, useRender } = types(registers)
+export default function Redity() {}
+Redity.connect = connect
+Redity.Capsule = Capsule
+Redity.useRender = useRender
+Redity.render = render
+Redity.renders = renders
+Redity.useLocal = useLocal
+/**
+ * Returns the number of registered components but only those that are displayed.
+ */
+Redity.size = function (): number {
+    return registers.size
+}
+Redity.version = '1.0.0-alpha.2'
 
-const { render, asyncRender } = getRenderTools(registers)
-
-export { connect, Capsule, useRender, render, asyncRender }
+export { connect, Capsule, useRender, render, renders, useLocal }

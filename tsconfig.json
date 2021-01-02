@@ -15,10 +15,7 @@
     "jsx": "react"
   },
   "compileOnSave": true,
-  "include": [
-    "src",
-    "__test__/**/*"
-  ],
+  "include": ["src/**/*"],
   "exclude": [
     "node_modules",
     "**/*.spec.ts",
