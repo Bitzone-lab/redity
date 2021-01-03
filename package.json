@@ -4,6 +4,9 @@
   "description": "Render generator",
   "main": "lib/index.js",
   "types": "./types/index.d.ts",
+  "bugs": "https://github.com/Bitzone-lab/redity/issues",
+  "repository": "https://github.com/Bitzone-lab/redity",
+  "homepage": "https://github.com/Bitzone-lab",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
@@ -14,7 +17,14 @@
   },
   "keywords": [
     "typescript",
-    "javascript"
+    "javascript",
+    "hook",
+    "vsc",
+    "react",
+    "render",
+    "keyName",
+    "Controllers",
+    "POO"
   ],
   "author": "Erick <ertriilive@gmail.com> (https://github.com/ertrii)",
   "license": "MIT",
