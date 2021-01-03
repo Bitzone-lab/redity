@@ -1,7 +1,7 @@
 {
   "name": "redity",
   "version": "1.0.0-alpha.2",
-  "description": "",
+  "description": "Render generator",
   "main": "lib/index.js",
   "types": "./types/index.d.ts",
   "scripts": {

@@ -1,28 +1,35 @@
 Redity
 ========
 
-Un generador de renders
+Render generator.
 
 ```
 npm install redity
 ```
 
-## Render and Connect
+#### Requirements
+* react: "^16.8.0",
+* react-dom: "^16.8.0"
 
-`render` es un método que genera render a los componentes conectados. Para identificar un connect se requiere de una key. Las key deben ser únicas.
+## Starting
+
+The concept of Redity is to be able to generate renders from outside by its keyName to the registered components. The advantage comes when you want to take the logic out of the component and have a store that can be distributed to any component.
+
+Manage the renders to the necessary components. This will lead to a better performance.
 
 ```js
 // Controller/index.js
-
 import { render } from 'redity'
 
-export const my_states = {
-  name: ''
+const KEYNAME = 'MY_KEYNAME'
+
+export const store = {
+  message: ''
 }
 
 export function handleClick() {
-  my_states.name = 'Juan'
-  render('my_key')
+  store.message = 'Welcome to Redity! 😄'
+  render(KEYNAME)
 }
 ```
 
@@ -30,64 +37,179 @@ export function handleClick() {
 // MyComponent.js
 import React from 'react'
 import { connect } from 'redity'
-import { my_states, handleClick } from './Controller'
+import { store, handleClick, KEYNAME } from './Controller'
 
 function MyComponent(){
   return (
     <div>
-      <p>{ my_states.name }</p>
+      <p>{ store.message }</p>
       <button onClick={handleClick} >Click me! :D</button>
     </div>
   )
 }
 
-export default connect('my_key')(MyComponent)
+export default connect(KEYNAME)(MyComponent)
 ```
 
-## Capsule
+## Register Components
 
-Es un componente que encapsula cierta sección del componente en donde se espera realizar un render. Una capsula requiere de una `key`
+There are three ways to register a component:
+* [connect](#Connect)
+* [capsule](#Capsule)
+* [useRender](#useRender)
 
+### [Connect](#Connect)
 
 ```js
-import React from 'react'
+import { connect } from 'redity'
+
+/** ... */
+
+export default connect('my_key')(Component)
+```
+
+### [Capsule](#Capsule)
+
+`Capsule` will only record the section that is encapsulated.
+```js
 import { Capsule } from 'redity'
-import { my_states, handleClick } from './Controller'
 
 export default function MyComponent(){
-  return (
-    <div>
-      <Capsule keyName='my_key'>
-        {
-          () => (
-            <p>{ my_states.name }</p>
-            <button onClick={handleClick} >Click me! :D</button>
-          )
-        }      
-      </Capsule>
-    </div>
-  )
+    return (
+      <div>
+        <Capsule keyName='my_key'>
+          <div>...</div>
+        </Capsule>
+      </div>
+    )
 }
 ```
 
-Es otra opción en vez de connect.
+### [useRender](#useRender)
 
+```js
+import { useRender } from 'redity'
 
+export default function MyComponent(){
+    useRender('my_key')
+
+    return (
+      <div>
+          <div>...</div>
+      </div>
+    )
+}
+```
+
+`All records are unique`. Each record requires a keyname to identify when you want to generate a render.
+
+## useLocal
+
+it's just a useState to generate a forced render on the current component.
+```js
+import { useLocal } from 'redity'
+
+export default function MyComponent(){
+    const render = useLocal()
+    function handleClick(){
+        render()
+    }
+    return (
+      <div>
+          <div onClick={handleClick} >...</div>
+      </div>
+    )
+}
+```
+
+## Render
+When a component is registered and it is deployed it is possible to generate a render. In order to generate a render you need to identify its KeyName.
+
+```js
+import { render } from 'redity'
+render('my_key') // true
+```
+
+## Index
+Indexes are a way to subclass component subscriptions.
+All types of subscriptions have as a second parameter adding the index.
+
+```js
+export default connect('my_key', 1)(Component)
+```
+```js
+<Capsule keyName="my_key" index={1}>
+ ...
+</Capsule>
+```
+```js
+useRender('my_key', 1)
+```
+To generate a render pass it the keyName and index.
+
+```js
+import { render } from 'redity'
+render('my_key', 1)
+```
+
+## Renders
+With the indices we can generate rendering groups in parallel.
+
+Keep in mind that it will generate render only those that are registered by their index. Thanks to this you only need to pass the keyName.
+```js
+function Children1(){
+    useRender('Parent', 'children_1')
+    return <p>Children 1</p>
+}
+
+function Children2(){
+    useRender('Parent', 'children_2')
+    return <p>Children 2</p>
+}
+
+function Parent (){
+    useRender('Parent')
+    return (
+        <div>
+            <Children1 />
+            <Children2 />
+        </div>
+    )
+}
+```
+
+```js
+import { renders } from 'redity'
+renders('Parent') // 2
+```
+Renders will return the sum of the generated renders. One render for each child component.
 ## getProps
 
-Es una función que retorna los props pasados por el componente conectado. Requiere de la key del componente conectado.
+getProp, when you want to get the props from a parent component. This will only be possible for components registered by [connect](#Connect).
 
 ```js
-<MyComponent my_prop='prop'>
+function MyComponent({ name }){/*...*/}
+
+export default connect(KEY_NAME)(MyComponent)
 ```
 ```js
-// Controller/index.js
-import { getProps } from 'redity'
-
-
-function getPropsOfMyComponent () {
-  getProps('my_key')
+function ParentComponent(){
+    return (
+        <div>
+            <MyComponent name='Seba'>
+        </div>
+    )
 }
 ```
+```js
+import { getProps } from 'redity'
+getProps(KEY_NAME) // { name: 'Seba' }
+```
 
-> Tenga en claro que solo funciona para los componentes conectados (`connect`) y encapsulado (`capsule`).
+## Consider
+
+* If there are two components registered only by the same keyName, it will only be possible to render one. As a solution use the index.
+* Use constants for your KeyNames.
+* If you want to know the number of records use `Redity.size()`.
+* Use `Capsule` for small sections of the component and separate indeces. For example in rows of a table.
+* Use `connect` only when you want to get the prop sent by the parent component by the getProps method.
