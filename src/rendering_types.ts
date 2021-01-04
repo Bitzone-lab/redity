@@ -52,16 +52,34 @@ export default function renderingTypes(
             return false
         }
     }
+
+    /**
+     * Generate render to component for yours keyName registered
+     * @param keyName keyName for render
+     * @param index aditional
+     * @returns if a registered component is found and deployed, it will be true.
+     */
     function render(keyName: string, index?: number | string): boolean {
         const render = getRenderRegister(keyName, index || '')
         return render()
     }
 
+    /**
+     * Generate render asynchronously to component for yours keyName registered.
+     * @param keyName keyName for render
+     * @param index aditional
+     * @returns if a registered component is found and deployed, it will be true.
+     */
     async function asyncRender(keyName: string, index?: number | string): Promise<boolean> {
         const render = getRenderRegister(keyName, index || '')
         return render()
     }
 
+    /**
+     * Generates rendering only to the components registered by their index by their keyName
+     * @param keyName keyName of group for render
+     * @returns Returns the amount of render generated to the components displayed by index
+     */
     function renders(keyName: string): number {
         let count = 0
         registers.forEach(function (register, key) {

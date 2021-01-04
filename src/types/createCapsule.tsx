@@ -29,6 +29,14 @@ interface PropsCapsule {
 export type TypeCapsule = (props: PropsCapsule) => JSX.Element
 
 export default function createCapsule(registers: Map<string, Hook | Connection | Encapsulation>): TypeCapsule {
+    /**
+    * Helps wrap a component where you want to render by keyName
+    * @param props Props Capsule
+    * @example
+    * <Capsule keyName='MyKeyName' index='1'>
+    *  <MyComponent>
+    * </Capsule>
+    */
     function Capsule(props: PropsCapsule): JSX.Element {
         const [, forceRender ] = useForceRender()
 
