@@ -3,4 +3,3 @@
  * @returns Return a method to generate a render
  */
 export default function useLocal(): () => void;
-//# sourceMappingURL=useLocal.d.ts.map

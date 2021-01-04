@@ -1,9 +1,9 @@
 import createCapsule, { TypeCapsule } from "./createCapsule";
 import { Hook, Connection, Encapsulation } from '../store'
-import createConnect, { Connect } from "./createConnect";
-import createUseRender, { UseRender } from "./createUseRender";
+import createConnect from "./createConnect";
+import createUseRender from "./createUseRender";
 import useLocal from './useLocal'
-import tools, { Tools, GetProps } from './tools'
+import tools from './tools'
 
 export default function types (registers: Map<string, Hook | Connection | Encapsulation>) {
   const Capsule: TypeCapsule = createCapsule(registers)
@@ -12,10 +12,9 @@ export default function types (registers: Map<string, Hook | Connection | Encaps
  * @param keyName key name
  * @param index index
  */
-  const connect: Connect = createConnect(registers)
-  const useRender: UseRender = createUseRender(registers)
-  const _tools: Tools = tools(registers)
-  const getProps: GetProps = _tools.getProps
+  const connect = createConnect(registers)
+  const useRender = createUseRender(registers)
+  const { getProps } = tools(registers)
 
   return {
     useRender,

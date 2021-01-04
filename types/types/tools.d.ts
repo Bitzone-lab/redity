@@ -9,4 +9,3 @@ export interface Tools {
     getProps: GetProps;
 }
 export default function tools(registers: Map<string, Hook | Connection | Encapsulation>): Tools;
-//# sourceMappingURL=tools.d.ts.map

@@ -29,4 +29,3 @@ interface PropsCapsule<T = any> {
 export declare type TypeCapsule = (props: PropsCapsule) => JSX.Element;
 export default function createCapsule(registers: Map<string, Hook | Connection | Encapsulation>): TypeCapsule;
 export {};
-//# sourceMappingURL=createCapsule.d.ts.map

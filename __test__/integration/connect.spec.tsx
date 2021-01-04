@@ -26,4 +26,23 @@ describe('connect', function () {
             done()
         })
     })
+
+    it('connecting component with props', function (done) {
+        const keyName = 'KEY_TEST'
+        interface Props {
+            name: string
+        }
+
+        function Component({ name }: Props) {
+            expect(name).toBe('Juan')
+            return <h1>{name}</h1>
+        }
+        const WrapperComponent = connect(keyName)(Component)
+
+        act(() => {
+            initRender(<WrapperComponent name="Juan" />)
+            expect(render(keyName)).toBeTruthy()
+            done()
+        })
+    })
 })
