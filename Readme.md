@@ -78,11 +78,23 @@ export default function MyComponent(){
     return (
       <div>
         <Capsule keyName='my_key'>
-          <div>...</div>
+          {() => <div>...<div/>}
         </Capsule>
       </div>
     )
 }
+```
+You can send props to the children component.
+
+```jsx
+function Children(props){
+    return (<div>{props.name}</div>)
+}
+```
+```jsx
+<Capsule keyName='my_key' props={{ name: 'Pacheco' }} >
+  {Children}
+</Capsule>
 ```
 
 ### [useRender](#useRender)

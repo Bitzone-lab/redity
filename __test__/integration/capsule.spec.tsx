@@ -13,11 +13,7 @@ describe('capsule', function () {
         }
 
         function Component() {
-            return (
-                <Capsule keyName={keyName}>
-                    <h1>{store.title}</h1>
-                </Capsule>
-            )
+            return <Capsule keyName={keyName}>{() => <h1>{store.title}</h1>}</Capsule>
         }
 
         act(() => {
@@ -25,6 +21,34 @@ describe('capsule', function () {
             expect(render(keyName)).toBeTruthy()
             expect(render('other_key')).toBeFalsy()
             expect(Redity.size()).toBe(1)
+            done()
+        })
+    })
+
+    it('sending Props', function (done) {
+        const keyName = 'KEY_TEST2'
+        interface Props {
+            name: string
+        }
+
+        function Children(props: Props) {
+            expect(props).toMatchObject({
+                name: 'Pacheco'
+            })
+            return <p>{props.name}</p>
+        }
+
+        function Component() {
+            return (
+                <Capsule keyName={keyName} props={{ name: 'Pacheco' }}>
+                    {Children}
+                </Capsule>
+            )
+        }
+
+        act(() => {
+            initRender(<Component />)
+            expect(render(keyName)).toBeTruthy()
             done()
         })
     })

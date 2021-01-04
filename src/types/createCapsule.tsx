@@ -1,13 +1,13 @@
-import React, { ReactNode, Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { useForceRender } from '../hooks/useForceRenders'
 import { Hook, Connection, Encapsulation } from '../store'
 import { __keyNameIndex__ } from '../utils/tools'
 
-interface PropsCapsule {
+interface PropsCapsule<T = any> {
     /**
-     * Your Component
+     * Function Component
      */
-    children: ReactNode
+    children: (props?: T) => JSX.Element
     /**
      * Key name for render
      */
@@ -16,6 +16,10 @@ interface PropsCapsule {
      * index aditional for render
      */
     index?: string | number | undefined
+    /**
+     * Send Props
+     */
+    props?: T
 }
 
 /**
@@ -37,14 +41,15 @@ export default function createCapsule(registers: Map<string, Hook | Connection |
     *  <MyComponent>
     * </Capsule>
     */
-    function Capsule(props: PropsCapsule): JSX.Element {
+    function Capsule<T>(props: PropsCapsule<T>): JSX.Element {
         const [, forceRender ] = useForceRender()
 
         function setRegister() {
             const encapsulation: Encapsulation = {
                 keyName: props.keyName,
                 index: props.index,
-                render: forceRender
+                render: forceRender,
+                props: props.props
             }
 
             registers.set(__keyNameIndex__(props.keyName, props.index), encapsulation)
@@ -63,7 +68,7 @@ export default function createCapsule(registers: Map<string, Hook | Connection |
 
         setRegister()
 
-        return <Fragment>{props.children}</Fragment>
+        return <Fragment>{props.children(props.props)}</Fragment>
     }
 
     return Capsule

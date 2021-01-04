@@ -1,10 +1,10 @@
-import { ReactNode } from 'react';
+/// <reference types="react" />
 import { Hook, Connection, Encapsulation } from '../store';
-interface PropsCapsule {
+interface PropsCapsule<T = any> {
     /**
-     * Your Component
+     * Function Component
      */
-    children: ReactNode;
+    children: (props?: T) => JSX.Element;
     /**
      * Key name for render
      */
@@ -13,6 +13,10 @@ interface PropsCapsule {
      * index aditional for render
      */
     index?: string | number | undefined;
+    /**
+     * Send Props
+     */
+    props?: T;
 }
 /**
  * Helps wrap a component where you want to render by keyName
