@@ -3,14 +3,19 @@ import { useForceRender } from '../hooks/useForceRenders'
 import { Hook, Connection, Encapsulation } from '../store'
 import { __keyNameIndex__ } from '../utils/tools'
 
-export default function createConnect(registers: Map<string, Hook | Connection | Encapsulation>) {
-    /**
-     * Register component for render by key name
-     * @param keyName key name
-     * @param index index
-     */
+type TypeComponent = (props: any) => JSX.Element
+export type Wrapped<T> = (props: React.PropsWithChildren<T>) => JSX.Element
+type ConnectComponent<T = TypeComponent> = (Component: T) => Wrapped<T>
+/**
+ * Register component for render by key name
+ * @param keyName key name
+ * @param index index
+ */
+export type Connect<T = {}> = (keyName: string, index?: string|number) => ConnectComponent<T>
+
+export default function createConnect(registers: Map<string, Hook | Connection | Encapsulation>): Connect {
     function connect(keyName: string, index?: string | number) {
-        return function(Component: (props: any) => JSX.Element) {
+        return function(Component: any) {
 
             function WrappedComponent<T>(props: React.PropsWithChildren<T>) {
                 const [, forceRender] = useForceRender()

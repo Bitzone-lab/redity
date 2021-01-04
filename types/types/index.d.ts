@@ -1,10 +1,13 @@
-/// <reference types="react" />
+import { TypeCapsule } from "./createCapsule";
 import { Hook, Connection, Encapsulation } from '../store';
+import { Connect } from "./createConnect";
+import { UseRender } from "./createUseRender";
 import useLocal from './useLocal';
+import { GetProps } from './tools';
 export default function types(registers: Map<string, Hook | Connection | Encapsulation>): {
-    useRender: (keyName: string, index?: string | number | undefined) => void;
-    connect: (keyName: string, index?: string | number | undefined) => (Component: (props: any) => JSX.Element) => <T>(props: import("react").PropsWithChildren<T>) => JSX.Element;
-    Capsule: (props: import("./createCapsule").PropsCapsule) => JSX.Element;
+    useRender: UseRender;
+    connect: Connect<{}>;
+    Capsule: TypeCapsule;
     useLocal: typeof useLocal;
-    getProps: <T_1 = {}>(keyName: string) => T_1 | null;
+    getProps: GetProps<{}>;
 };

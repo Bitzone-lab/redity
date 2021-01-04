@@ -7,12 +7,14 @@
     "outDir": "lib",
     "sourceMap": false,
     "strict": true,
-    "target": "es2015",
+    "target": "es5",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "jsx": "react"
+    "jsx": "react",
+    "removeComments": false,
+    "noImplicitAny": false
   },
   "compileOnSave": true,
   "include": ["src"],

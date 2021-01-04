@@ -3,7 +3,7 @@ import { useForceRender } from '../hooks/useForceRenders'
 import { Hook, Connection, Encapsulation } from '../store'
 import { __keyNameIndex__ } from '../utils/tools'
 
-export interface PropsCapsule {
+interface PropsCapsule {
     /**
      * Your Component
      */
@@ -18,15 +18,17 @@ export interface PropsCapsule {
     index?: string | number | undefined
 }
 
-export default function createCapsule(registers: Map<string, Hook | Connection | Encapsulation>) {
-    /**
-     * Helps wrap a component where you want to render by keyName
-     * @param props Props Capsule
-     * @example
-     * <Capsule keyName='MyKeyNameForMyComponent' index='1'>
-     *  <MyComponent>
-     * </Capsule>
-     */
+/**
+ * Helps wrap a component where you want to render by keyName
+ * @param props Props Capsule
+ * @example
+ * <Capsule keyName='MyKeyName' index='1'>
+ *  <MyComponent>
+ * </Capsule>
+ */
+export type TypeCapsule = (props: PropsCapsule) => JSX.Element
+
+export default function createCapsule(registers: Map<string, Hook | Connection | Encapsulation>): TypeCapsule {
     function Capsule(props: PropsCapsule): JSX.Element {
         const [, forceRender ] = useForceRender()
 

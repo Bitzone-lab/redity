@@ -1,15 +1,20 @@
-/// <reference types="react" />
-declare const connect: (keyName: string, index?: string | number | undefined) => (Component: (props: any) => JSX.Element) => <T>(props: import("react").PropsWithChildren<T>) => JSX.Element, Capsule: (props: import("./types/createCapsule").PropsCapsule) => JSX.Element, useRender: (keyName: string, index?: string | number | undefined) => void, useLocal: typeof import("./types/useLocal").default, getProps: <T = {}>(keyName: string) => T | null;
-declare const render: (keyName: string, index?: string | number | undefined) => boolean, renders: (keyName: string) => number;
+import { Render as RenderFun, Renders as RendersFun } from './rendering_types';
+import * as TypesConnect from './types/createConnect';
+declare const connect: TypesConnect.Connect<{}>, Capsule: import("./types/createCapsule").TypeCapsule, useRender: import("./types/createUseRender").UseRender, useLocal: typeof import("./types/useLocal").default, getProps: import("./types/tools").GetProps<{}>;
+declare const render: RenderFun;
+declare const renders: RendersFun;
+export declare type Wrapped<T> = TypesConnect.Wrapped<T>;
+export declare type Render = RenderFun;
+export declare type Rendes = RendersFun;
 declare function Redity(): void;
 declare namespace Redity {
-    var connect: (keyName: string, index?: string | number | undefined) => (Component: (props: any) => JSX.Element) => <T>(props: import("react").PropsWithChildren<T>) => JSX.Element;
-    var Capsule: (props: import("./types/createCapsule").PropsCapsule) => JSX.Element;
-    var useRender: (keyName: string, index?: string | number | undefined) => void;
-    var render: (keyName: string, index?: string | number | undefined) => boolean;
-    var renders: (keyName: string) => number;
+    var connect: TypesConnect.Connect<{}>;
+    var Capsule: import("./types/createCapsule").TypeCapsule;
+    var useRender: import("./types/createUseRender").UseRender;
+    var render: RenderFun;
+    var renders: RendersFun;
     var useLocal: typeof import("./types/useLocal").default;
-    var getProps: <T = {}>(keyName: string) => T | null;
+    var getProps: import("./types/tools").GetProps<{}>;
     var size: () => number;
     var version: string;
 }

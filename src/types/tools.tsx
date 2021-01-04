@@ -1,11 +1,16 @@
 import { Hook, Connection, Encapsulation } from '../store'
 
-export default function tools(registers: Map<string, Hook | Connection | Encapsulation>) {
-  /**
-   * Returns the props received per connection by the parent component
-   * @param keyName KeyName of connection
-   * @returns props
-   */
+/**
+ * Returns the props received per connection by the parent component
+ * @param keyName KeyName of connection
+ * @returns props
+ */
+export type GetProps<T = {}> = (keyName: string) => T | null
+export interface Tools {
+    getProps: GetProps
+}
+
+export default function tools(registers: Map<string, Hook | Connection | Encapsulation>) : Tools {
   function getProps<T = {}>(keyName: string): T | null {
     const register: Hook | Connection<T> | Encapsulation | {} = registers.get(keyName) || {}
 

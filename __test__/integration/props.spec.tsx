@@ -1,6 +1,6 @@
 import React from 'react'
 import { act } from 'react-dom/test-utils'
-import { connect, getProps } from '../../src'
+import { connect, getProps, Wrapped } from '../../src'
 import { displayDOM } from '../initial.config'
 
 const initRender = displayDOM()
@@ -16,7 +16,7 @@ describe('props', function () {
             return <h1>{name}</h1>
         }
 
-        const WrapperComponent = connect(keyName)(Component)
+        const WrapperComponent: Wrapped<Props> = connect(keyName)(Component)
 
         act(() => {
             initRender(<WrapperComponent name="Juan" />)
