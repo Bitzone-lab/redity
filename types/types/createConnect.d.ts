@@ -11,3 +11,4 @@ declare type ConnectComponent<T = TypeComponent> = (Component: T) => Wrapped<T>;
 export declare type Connect<T = {}> = (keyName: string, index?: string | number) => ConnectComponent<T>;
 export default function createConnect(registers: Map<string, Hook | Connection | Encapsulation>): Connect;
 export {};
+//# sourceMappingURL=createConnect.d.ts.map

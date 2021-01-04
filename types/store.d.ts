@@ -17,3 +17,4 @@ export interface Encapsulation {
 export default function store(): {
     registers: Map<string, Hook | Encapsulation | Connection<{}>>;
 };
+//# sourceMappingURL=store.d.ts.map

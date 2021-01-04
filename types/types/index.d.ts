@@ -11,3 +11,4 @@ export default function types(registers: Map<string, Hook | Connection | Encapsu
     useLocal: typeof useLocal;
     getProps: GetProps<{}>;
 };
+//# sourceMappingURL=index.d.ts.map

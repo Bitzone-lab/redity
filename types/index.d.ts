@@ -20,3 +20,4 @@ declare namespace Redity {
 }
 export default Redity;
 export { connect, Capsule, useRender, render, renders, useLocal, getProps };
+//# sourceMappingURL=index.d.ts.map

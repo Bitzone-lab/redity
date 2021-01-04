@@ -6,3 +6,4 @@ import { Hook, Connection, Encapsulation } from '../store';
 */
 export declare type UseRender = (keyName: string, index?: number | string) => void;
 export default function createUseRender(registers: Map<string, Hook | Connection | Encapsulation>): UseRender;
+//# sourceMappingURL=createUseRender.d.ts.map

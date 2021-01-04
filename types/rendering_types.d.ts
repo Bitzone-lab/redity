@@ -25,3 +25,4 @@ export interface RendersTypes {
     renders: Renders;
 }
 export default function renderingTypes(registers: Map<string, Hook | Connection | Encapsulation>): RendersTypes;
+//# sourceMappingURL=rendering_types.d.ts.map

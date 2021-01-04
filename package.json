@@ -12,7 +12,7 @@
     "test:watch": "jest --watch",
     "tsc": "tsc",
     "lint": "eslint . --ext .ts",
-    "types": "tsc --d --declarationDir ./types",
+    "types": "tsc --d --declarationDir ./types --declarationMap --emitDeclarationOnly",
     "publish:lib": "npm run lint && npm run test && npm run types && npm run tsc && npm publish"
   },
   "keywords": [
