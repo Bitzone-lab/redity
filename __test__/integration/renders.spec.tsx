@@ -35,7 +35,7 @@ describe('generate renders', function () {
 
         act(() => {
             initRender(<Component />)
-            expect(render(keyName)).toBeTruthy()
+            expect(render(keyName)).toBeFalsy()
             expect(render(keyName, index)).toBeTruthy()
             expect(render(keyName, 2)).toBeFalsy()
             done()

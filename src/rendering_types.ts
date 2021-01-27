@@ -36,10 +36,10 @@ export default function renderingTypes(
         let register_finded: Hook | Connection | Encapsulation | null = null
 
         registers.forEach(function (register, key) {
-            const [_keyName, _index] = key.split(__separator__)
-            if (keyName === _keyName && index === '') {
+            const [_keyName, i] = key.split(__separator__)
+            if (keyName === _keyName && index === '' && i === undefined) {
                 register_finded = register
-            } else if (index && _keyName === keyName && _index === index.toString()) {
+            } else if (index && _keyName === keyName && i === index.toString()) {
                 register_finded = register
             }
         })
