@@ -8,7 +8,7 @@ import { __keyNameIndex__ } from '../utils/tools'
  * @param keyName keyName to identify by render
  * @param index its additional
 */
-export type UseRender = (keyName: string, index?: number|string) => void
+export type UseRender = (keyName?: string, index?: number|string) => void
 
 export default function createUseRender(registers: Map<string, Hook | Connection | Encapsulation>): UseRender {
     /**
@@ -16,30 +16,42 @@ export default function createUseRender(registers: Map<string, Hook | Connection
     * @param keyName keyName to identify by render
     * @param index its additional
     */
-    function useRender(keyName: string, index?: number | string): void {
+    function useRender(keyName?: string, index?: number | string): () => void { 
         const [, forceRender] = useForceRender()
 
-        function setRegister() {
+        function setRegister(key: string) {
             const hook: Hook = {
-                keyName,
+                keyName: key,
                 index,
                 render: forceRender
             }
-            registers.set(__keyNameIndex__(keyName, index), hook)
+            registers.set(__keyNameIndex__(key, index), hook)
         }
 
-        function deleteRegister() {
-            registers.delete(__keyNameIndex__(keyName, index))
+        function deleteRegister(key: string) {
+            registers.delete(__keyNameIndex__(key, index))
         }
 
         useEffect(() => {
-            setRegister()
+            if(keyName !== undefined){
+                setRegister(keyName)
+            }
             return () => {
-                deleteRegister()
+                if(keyName !== undefined){
+                    deleteRegister(keyName)
+                }
             }
         }, [])
 
-        setRegister()
+        if(keyName !== undefined){
+            setRegister(keyName)
+        }
+
+        function render() {
+            forceRender()
+        }
+
+        return render
     }
 
     return useRender

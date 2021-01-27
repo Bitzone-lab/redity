@@ -87,4 +87,15 @@ describe('generate renders', function () {
             initRender(<Component />)
         })
     })
+
+    it('local render with useRender', function () {
+        function Component() {
+            const _render = useRender()
+            expect(typeof _render === 'function').toBeTruthy()
+            return <h1>Hello</h1>
+        }
+        act(() => {
+            initRender(<Component />)
+        })
+    })
 })
