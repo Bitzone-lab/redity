@@ -22,15 +22,17 @@ interface PropsCapsule<T = any> {
     props?: T
 }
 
-/**
- * Helps wrap a component where you want to render by keyName
- * @param props Props Capsule
- * @example
- * <Capsule keyName='MyKeyName' index='1'>
- *  <MyComponent>
- * </Capsule>
- */
-export type TypeCapsule = (props: PropsCapsule) => JSX.Element
+export interface TypeCapsule {
+    /**
+     * Helps wrap a component where you want to render by keyName
+     * @param props Props Capsule
+     * @example
+     * <Capsule keyName='MyKeyName' index='1'>
+     *  <MyComponent>
+     * </Capsule>
+     */
+    (props: PropsCapsule) : JSX.Element
+}
 
 export default function createCapsule(registers: Map<string, Hook | Connection | Encapsulation>): TypeCapsule {
     /**

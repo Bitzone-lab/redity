@@ -1,28 +1,35 @@
 import { Hook, Connection, Encapsulation } from './store'
 import { __separator__ } from './utils/tools'
 
-/**
- * Generate render to component for yours keyName registered
- * @param keyName keyName for render
- * @param index aditional
- * @returns if a registered component is found and deployed, it will be true.
- */
-export type Render = (keyName: string, index?: number | string) => boolean
+export interface Render {
+    /**
+     * Generate render to component for yours keyName registered
+     * @param keyName keyName for render
+     * @param index aditional
+     * @returns if a registered component is found and deployed, it will be true.
+     */
+    (keyName: string, index?: number | string): boolean
+}
 
-/**
- * Generate render asynchronously to component for yours keyName registered.
- * @param keyName keyName for render
- * @param index aditional
- * @returns if a registered component is found and deployed, it will be true.
- */
-export type AsyncRender = (keyName: string, index?: number | string) => Promise<boolean>
+export interface AsyncRender {
+    /**
+     * Generate render asynchronously to component for yours keyName registered.
+     * @param keyName keyName for render
+     * @param index aditional
+     * @returns if a registered component is found and deployed, it will be true.
+     */
+    (keyName: string, index?: number | string): Promise<boolean>
+}
 
-/**
- * Generates rendering only to the components registered by their index by their keyName
- * @param keyName keyName of group for render
- * @returns Returns the amount of render generated to the components displayed by index
- */
-export type Renders = (keyName: string) => number
+export interface Renders {
+    /**
+     * Generates rendering only to the components registered by their index by their keyName
+     * @param keyName keyName of group for render
+     * @param omits omit index
+     * @returns Returns the amount of render generated to the components displayed by index
+     */
+    (keyName: string, omits?: Array<string | number>): number
+}
 export interface RendersTypes {
     render: Render
     asyncRender: AsyncRender
@@ -53,38 +60,21 @@ export default function renderingTypes(
         }
     }
 
-    /**
-     * Generate render to component for yours keyName registered
-     * @param keyName keyName for render
-     * @param index aditional
-     * @returns if a registered component is found and deployed, it will be true.
-     */
     function render(keyName: string, index?: number | string): boolean {
         const render = getRenderRegister(keyName, index || '')
         return render()
     }
 
-    /**
-     * Generate render asynchronously to component for yours keyName registered.
-     * @param keyName keyName for render
-     * @param index aditional
-     * @returns if a registered component is found and deployed, it will be true.
-     */
     async function asyncRender(keyName: string, index?: number | string): Promise<boolean> {
         const render = getRenderRegister(keyName, index || '')
         return render()
     }
 
-    /**
-     * Generates rendering only to the components registered by their index by their keyName
-     * @param keyName keyName of group for render
-     * @returns Returns the amount of render generated to the components displayed by index
-     */
-    function renders(keyName: string): number {
+    function renders(keyName: string, omits: Array<string | number> = []): number {
         let count = 0
         registers.forEach(function (register, key) {
             const [_keyName, _index] = key.split(__separator__)
-
+            if (omits.find((omit) => omit === _index)) return
             if (_keyName === keyName && _index) {
                 register.render()
                 count++

@@ -1,12 +1,11 @@
 import React from 'react'
-import { act } from 'react-dom/test-utils'
 import { connect, getProps, Wrapped } from '../../src'
-import { displayDOM } from '../initial.config'
-
-const initRender = displayDOM()
+import { render as mount } from '@testing-library/react'
+import init from '../initial.config'
 
 describe('props', function () {
-    it('getProps', function (done) {
+    init()
+    it('getProps', function () {
         const keyName = 'KEY_TEST'
         interface Props {
             name: string
@@ -18,12 +17,9 @@ describe('props', function () {
 
         const WrapperComponent: Wrapped<Props> = connect(keyName)(Component)
 
-        act(() => {
-            initRender(<WrapperComponent name="Juan" />)
-            expect(getProps(keyName)).toMatchObject({
-                name: 'Juan'
-            })
-            done()
+        mount(<WrapperComponent name="Juan" />)
+        expect(getProps(keyName)).toMatchObject({
+            name: 'Juan'
         })
     })
 })

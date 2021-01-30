@@ -1,20 +1,16 @@
-import ReactDOM from 'react-dom'
-
-export function displayDOM() {
-    let container: HTMLDivElement | null = null
-    beforeEach(() => {
-        container = document.createElement('div')
-        document.body.appendChild(container)
-    })
-
-    afterEach(() => {
-        if (container) {
-            document.body.removeChild(container)
+/* eslint-disable no-console */
+export default function init() {
+    const originalError = console.error
+    beforeAll(() => {
+        console.error = (...args) => {
+            if (/Warning.*not wrapped in act/.test(args[0])) {
+                return
+            }
+            originalError.call(console, ...args)
         }
-        container = null
     })
 
-    return function (renderer: JSX.Element) {
-        ReactDOM.render(renderer, container)
-    }
+    afterAll(() => {
+        console.error = originalError
+    })
 }

@@ -33,6 +33,6 @@ Redity.size = function (): number {
 /**
  * Redity version
  */
-Redity.version = '1.0.0-beta.1'
+Redity.version = '1.0.0-alpha.4'
 
 export { connect, Capsule, useRender, render, renders, useLocal, getProps }

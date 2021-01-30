@@ -1,30 +1,34 @@
+import '@testing-library/jest-dom'
 import React from 'react'
-import { act } from 'react-dom/test-utils'
+import { render as mount, screen } from '@testing-library/react'
 import { useRender, render, connect, renders, useLocal } from '../../src'
-import { displayDOM } from '../initial.config'
-
-const initRender = displayDOM()
+import init from '../initial.config'
 
 describe('generate renders', function () {
-    it('render register', function (done) {
+    init()
+    it('render register', function () {
         const keyName = 'KEY_TEST_1'
+        const store = {
+            name: 'Juan'
+        }
         function Component() {
             useRender(keyName)
-            return <h1>Hello</h1>
+            return <h1>{store.name}</h1>
         }
 
-        act(() => {
-            initRender(<Component />)
-            expect(render(keyName)).toBeTruthy()
-            done()
-        })
+        mount(<Component />)
+        expect(screen.getByText('Juan')).toBeInTheDocument()
+
+        store.name = 'Miguel'
+        render(keyName)
+        expect(screen.getByText('Miguel')).toBeInTheDocument()
     })
 
     it('render a register not exist', function () {
         expect(render('KEY_TEST_NOT_EXITS')).toBeFalsy()
     })
 
-    it('render with index', function (done) {
+    it('render with index', function () {
         const keyName = 'KEY_TEST_2'
         const index = 1
 
@@ -33,16 +37,13 @@ describe('generate renders', function () {
             return <h1>Hello</h1>
         }
 
-        act(() => {
-            initRender(<Component />)
-            expect(render(keyName)).toBeFalsy()
-            expect(render(keyName, index)).toBeTruthy()
-            expect(render(keyName, 2)).toBeFalsy()
-            done()
-        })
+        mount(<Component />)
+        expect(render(keyName)).toBeFalsy()
+        expect(render(keyName, index)).toBeTruthy()
+        expect(render(keyName, 2)).toBeFalsy()
     })
 
-    it('renders', function (done) {
+    it('renders', function () {
         const keyName = 'KEY_NAME'
         const index1 = 1
         const index2 = 2
@@ -67,14 +68,11 @@ describe('generate renders', function () {
 
         const Wrapped = connect(keyName)(MainComponent)
 
-        act(() => {
-            initRender(<Wrapped />)
-            expect(render(keyName)).toBeTruthy()
-            expect(render(keyName, index1)).toBeTruthy()
-            expect(render(keyName, index2)).toBeTruthy()
-            expect(renders(keyName)).toBe(2)
-            done()
-        })
+        mount(<Wrapped />)
+        expect(render(keyName)).toBeTruthy()
+        expect(render(keyName, index1)).toBeTruthy()
+        expect(render(keyName, index2)).toBeTruthy()
+        expect(renders(keyName)).toBe(2)
     })
 
     it('local render', function () {
@@ -83,9 +81,7 @@ describe('generate renders', function () {
             expect(typeof _render === 'function').toBeTruthy()
             return <h1>Hello</h1>
         }
-        act(() => {
-            initRender(<Component />)
-        })
+        mount(<Component />)
     })
 
     it('local render with useRender', function () {
@@ -94,8 +90,7 @@ describe('generate renders', function () {
             expect(typeof _render === 'function').toBeTruthy()
             return <h1>Hello</h1>
         }
-        act(() => {
-            initRender(<Component />)
-        })
+
+        mount(<Component />)
     })
 })

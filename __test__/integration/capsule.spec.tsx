@@ -1,12 +1,11 @@
 import React from 'react'
-import { act } from 'react-dom/test-utils'
 import Redity, { Capsule, render } from '../../src'
-import { displayDOM } from '../initial.config'
-
-const initRender = displayDOM()
+import { render as mount } from '@testing-library/react'
+import init from '../initial.config'
 
 describe('capsule', function () {
-    it('Capsule Component', function (done) {
+    init()
+    it('Capsule Component', function () {
         const keyName = 'KEY_TEST'
         const store = {
             title: 'Hello'
@@ -16,16 +15,13 @@ describe('capsule', function () {
             return <Capsule keyName={keyName}>{() => <h1>{store.title}</h1>}</Capsule>
         }
 
-        act(() => {
-            initRender(<Component />)
-            expect(render(keyName)).toBeTruthy()
-            expect(render('other_key')).toBeFalsy()
-            expect(Redity.size()).toBe(1)
-            done()
-        })
+        mount(<Component />)
+        expect(render(keyName)).toBeTruthy()
+        expect(render('other_key')).toBeFalsy()
+        expect(Redity.size()).toBe(1)
     })
 
-    it('sending Props', function (done) {
+    it('sending Props', function () {
         const keyName = 'KEY_TEST2'
         interface Props {
             name: string
@@ -46,10 +42,7 @@ describe('capsule', function () {
             )
         }
 
-        act(() => {
-            initRender(<Component />)
-            expect(render(keyName)).toBeTruthy()
-            done()
-        })
+        mount(<Component />)
+        expect(render(keyName)).toBeTruthy()
     })
 })

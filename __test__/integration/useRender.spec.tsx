@@ -1,27 +1,24 @@
+import '@testing-library/jest-dom'
 import React from 'react'
-import { act } from 'react-dom/test-utils'
 import Redity, { useRender, render } from '../../src'
-import { displayDOM } from '../initial.config'
-
-const initRender = displayDOM()
+import { render as mount, screen } from '@testing-library/react'
+import init from '../initial.config'
 
 describe('useRender', function () {
-    it('useRender Component', function (done) {
+    init()
+    it('useRender Component', function () {
         const keyName = 'KEY_TEST'
         let count = 0
         function Component() {
             useRender(keyName)
-            ++count
-            return <h1>Hello</h1>
+            count++
+            return <h1>{count}</h1>
         }
 
-        act(() => {
-            initRender(<Component />)
-            expect(render(keyName)).toBeTruthy()
-            expect(render('other_key')).toBeFalsy()
-            expect(count).toBe(1)
-            expect(Redity.size()).toBe(1)
-            done()
-        })
+        mount(<Component />)
+        expect(render(keyName)).toBeTruthy()
+        expect(render('other_key')).toBeFalsy()
+        expect(screen.getByText(count)).toBeInTheDocument()
+        expect(Redity.size()).toBe(1)
     })
 })
