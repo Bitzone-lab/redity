@@ -134,6 +134,23 @@ export default function MyComponent(){
 }
 ```
 
+It can also be done with useRender.
+
+```js
+import { useRender } from 'redity'
+
+export default function MyComponent(){
+    const render = useRender()
+    function handleClick(){
+        render()
+    }
+    return (
+      <div>
+          <div onClick={handleClick} >...</div>
+      </div>
+    )
+}
+```
 ## Render
 When a component is registered and it is deployed it is possible to generate a render. In order to generate a render you need to identify its KeyName.
 
@@ -195,6 +212,12 @@ import { renders } from 'redity'
 renders('Parent') // 2
 ```
 Renders will return the sum of the generated renders. One render for each child component.
+
+You can skip some indexes 
+```js
+import { renders } from 'redity'
+renders('Parent', ['children_2']) // 1
+```
 ## getProps
 
 getProp, when you want to get the props from a parent component. This will only be possible for components registered by [connect](#Connect).
