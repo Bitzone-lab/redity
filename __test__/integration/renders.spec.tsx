@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import React from 'react'
-import { render as mount, screen } from '@testing-library/react'
+import { fireEvent, render as mount, screen } from '@testing-library/react'
 import { useRender, render, connect, renders, useLocal } from '../../src'
 import init from '../initial.config'
 
@@ -85,12 +85,22 @@ describe('generate renders', function () {
     })
 
     it('local render with useRender', function () {
+        const data = {
+            title: 'Creation'
+        }
         function Component() {
-            const _render = useRender()
-            expect(typeof _render === 'function').toBeTruthy()
-            return <h1>Hello</h1>
+            const l_render = useRender()
+            function handleClick() {
+                data.title = 'Edition'
+                l_render()
+            }
+            return <h1 onClick={handleClick}>{data.title}</h1>
         }
 
-        mount(<Component />)
+        const wrapped = mount(<Component />)
+        expect(wrapped.getByText(data.title)).toBeInTheDocument()
+        fireEvent.click(wrapped.getByText(data.title))
+        expect(wrapped.getByText(data.title)).toBeInTheDocument()
+        expect(data.title).toBe('Edition')
     })
 })

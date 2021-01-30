@@ -25,17 +25,13 @@ export default function createUseRender(registers: Map<string, Hook | Connection
             registers.set(__keyNameIndex__(key, index), hook)
         }
 
-        function deleteRegister(key: string) {
-            registers.delete(__keyNameIndex__(key, index))
-        }
-
         useEffect(() => {
             if(keyName !== undefined){
                 setRegister(keyName)
             }
             return () => {
                 if(keyName !== undefined){
-                    deleteRegister(keyName)
+                    registers.delete(__keyNameIndex__(keyName, index))
                 }
             }
         }, [])
@@ -44,11 +40,7 @@ export default function createUseRender(registers: Map<string, Hook | Connection
             setRegister(keyName)
         }
 
-        function render() {
-            forceRender()
-        }
-
-        return render
+        return forceRender
     }
 
     return useRender

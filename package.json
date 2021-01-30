@@ -26,7 +26,8 @@
     "lib",
     "types",
     "Readme.md",
-    "LICENSE.md"
+    "LICENSE.md",
+    "src"
   ],
   "author": "Erick <ertriilive@gmail.com> (https://github.com/ertrii)",
   "license": "MIT",
