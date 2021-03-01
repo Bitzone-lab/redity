@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import React from 'react'
-import Redity, { connect, render } from '../../src'
+import { connect, render, size } from '../../src'
 import { render as mount, screen } from '@testing-library/react'
 import init from '../initial.config'
 
@@ -14,14 +14,14 @@ describe('connect', function () {
             return <h1>{count}</h1>
         }
 
-        expect(Redity.size()).toBe(0)
+        expect(size()).toBe(0)
         const WrapperComponent = connect(keyName)(Component)
 
         mount(<WrapperComponent />)
         expect(render(keyName)).toBeTruthy()
         expect(render('other_key')).toBeFalsy()
         expect(screen.getByText(count)).toBeInTheDocument()
-        expect(Redity.size()).toBe(1)
+        expect(size()).toBe(1)
     })
 
     it('connecting component with props', function () {

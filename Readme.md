@@ -115,42 +115,6 @@ export default function MyComponent(){
 
 `All records are unique`. Each record requires a keyname to identify when you want to generate a render.
 
-## useLocal
-
-it's just a useState to generate a forced render on the current component.
-```js
-import { useLocal } from 'redity'
-
-export default function MyComponent(){
-    const render = useLocal()
-    function handleClick(){
-        render()
-    }
-    return (
-      <div>
-          <div onClick={handleClick} >...</div>
-      </div>
-    )
-}
-```
-
-It can also be done with useRender.
-
-```js
-import { useRender } from 'redity'
-
-export default function MyComponent(){
-    const render = useRender()
-    function handleClick(){
-        render()
-    }
-    return (
-      <div>
-          <div onClick={handleClick} >...</div>
-      </div>
-    )
-}
-```
 ## Render
 When a component is registered and it is deployed it is possible to generate a render. In order to generate a render you need to identify its KeyName.
 
@@ -218,29 +182,6 @@ You can skip some indexes
 import { renders } from 'redity'
 renders('Parent', ['children_2']) // 1
 ```
-## getProps
-
-getProp, when you want to get the props from a parent component. This will only be possible for components registered by [connect](#Connect).
-
-```js
-function MyComponent({ name }){/*...*/}
-
-export default connect(KEY_NAME)(MyComponent)
-```
-```js
-function ParentComponent(){
-    return (
-        <div>
-            <MyComponent name='Seba'>
-        </div>
-    )
-}
-```
-```js
-import { getProps } from 'redity'
-getProps(KEY_NAME) // { name: 'Seba' }
-```
-
 ## Consider
 
 * If there are two components registered only by the same keyName, it will only be possible to render one. As a solution use the index.

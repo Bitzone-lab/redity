@@ -1,25 +1,7 @@
-export interface Connection<T = {}> {
-    keyName: string
-    index: number | string | undefined
-    props: T
-    render: () => void | Promise<void>
-}
-
-export interface Hook {
-    keyName: string
-    index: number | string | undefined
-    render: () => void | Promise<void>
-}
-
-export interface Encapsulation {
-    keyName: string
-    index: number | string | undefined
-    render: () => void | Promise<void>
-    props?: any
-}
+import { Registered } from './typing'
 
 export default function store() {
-    const registers: Map<string, Connection | Hook | Encapsulation> = new Map()
+    const registers: Map<string, Registered> = new Map()
 
     return {
         registers

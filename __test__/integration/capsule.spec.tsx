@@ -1,5 +1,5 @@
 import React from 'react'
-import Redity, { Capsule, render } from '../../src'
+import { Capsule, render, size } from '../../src'
 import { render as mount } from '@testing-library/react'
 import init from '../initial.config'
 
@@ -18,7 +18,7 @@ describe('capsule', function () {
         mount(<Component />)
         expect(render(keyName)).toBeTruthy()
         expect(render('other_key')).toBeFalsy()
-        expect(Redity.size()).toBe(1)
+        expect(size()).toBe(1)
     })
 
     it('sending Props', function () {
