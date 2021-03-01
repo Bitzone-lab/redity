@@ -23,14 +23,16 @@ export default function renderingTypes(registers: Map<string, Registered>) {
         }
     }
 
-    function render(keyName: string, index?: number | string): boolean {
-        const render = getRenderRegister(keyName, index || '')
-        return render()
-    }
-
-    async function asyncRender(keyName: string, index?: number | string): Promise<boolean> {
-        const render = getRenderRegister(keyName, index || '')
-        return render()
+    function render(keyName: string | string[], index?: number | string): boolean {
+        let rendered: boolean = false
+        if (Array.isArray(keyName)) {
+            for (const key in keyName) {
+                rendered = getRenderRegister(key, index || '')()
+            }
+        } else {
+            rendered = getRenderRegister(keyName, index || '')()
+        }
+        return rendered
     }
 
     function renders(keyName: string, omits: Array<string | number> = []): number {
@@ -49,7 +51,6 @@ export default function renderingTypes(registers: Map<string, Registered>) {
 
     return {
         render,
-        asyncRender,
         renders
     }
 }

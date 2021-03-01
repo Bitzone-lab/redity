@@ -10,21 +10,11 @@ export interface UseRender {
 export interface Render {
     /**
      * Generate render to component for yours keyName registered
-     * @param keyName keyName for render
+     * @param keyName keyNames for render
      * @param index aditional
      * @returns if a registered component is found and deployed, it will be true.
      */
-    (keyName: string, index?: number | string): boolean
-}
-
-export interface AsyncRender {
-    /**
-     * Generate render asynchronously to component for yours keyName registered.
-     * @param keyName keyName for render
-     * @param index aditional
-     * @returns if a registered component is found and deployed, it will be true.
-     */
-    (keyName: string, index?: number | string): Promise<boolean>
+    (keyName: string | string[], index?: number | string): boolean
 }
 
 export interface Renders {
