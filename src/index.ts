@@ -4,20 +4,18 @@ import createConnect from './types/createConnect'
 import createCapsule from './types/createCapsule'
 import createUseRender from './types/createUseRender'
 import renderingTypes from './rendering_types'
-import { Render, Renders, TypeCapsule, UseRender } from './typing'
+import { PropsCapsule } from './typing'
 export * from './typing'
 
 const { registers } = store()
-const Capsule: TypeCapsule = createCapsule(registers)
+const Capsule: (props: PropsCapsule) => JSX.Element = createCapsule(registers)
 /**
  * @deprecated use useRender or Capsule
  */
 const connect = createConnect(registers)
-const useRender: UseRender = createUseRender(registers)
+const useRender = createUseRender(registers)
 
-const rendersTypes = renderingTypes(registers)
-const render: Render = rendersTypes.render
-const renders: Renders = rendersTypes.renders
+const { render, renders } = renderingTypes(registers)
 
 /**
  * Returns the number of registered components but only those that are displayed.

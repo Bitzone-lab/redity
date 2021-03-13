@@ -23,11 +23,11 @@ describe('capsule', function () {
 
     it('sending Props', function () {
         const keyName = 'KEY_TEST2'
-        interface Props {
+        interface ChildProps {
             name: string
         }
 
-        function Children(props: Props) {
+        function ComponentChild(props: ChildProps) {
             expect(props).toMatchObject({
                 name: 'Pacheco'
             })
@@ -37,7 +37,7 @@ describe('capsule', function () {
         function Component() {
             return (
                 <Capsule keyName={keyName} props={{ name: 'Pacheco' }}>
-                    {Children}
+                    {ComponentChild}
                 </Capsule>
             )
         }

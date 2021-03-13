@@ -1,2 +1,2 @@
-import { Registered, UseRender } from '../typing';
-export default function createUseRender(registers: Map<string, Registered>): UseRender;
+import { Registered } from '../typing';
+export default function createUseRender(registers: Map<string, Registered>): (keyName?: string | undefined, index?: string | number | undefined) => () => void;

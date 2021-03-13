@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import { Registered, UseRender } from '../typing'
+import { Registered } from '../typing'
 import createHash from '../utils/createHash'
 import setRegister from '../utils/setRegister'
 import { __keyNameIndex__ } from '../utils/tools'
 
-export default function createUseRender(registers: Map<string, Registered>): UseRender {
+export default function createUseRender(registers: Map<string, Registered>) {
     function useRender(keyName?: string, index?: number | string): () => void { 
         const [, setHash] = useState(createHash())
 
