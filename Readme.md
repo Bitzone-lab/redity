@@ -109,6 +109,8 @@ When a component is registered and it is deployed it is possible to generate a r
 ```js
 import { render } from 'redity'
 render('my_key') // true
+// or more
+render(['my_key', 'my_key2']) // true
 ```
 
 ## Index
