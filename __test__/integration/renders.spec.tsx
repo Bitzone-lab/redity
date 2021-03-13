@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import React from 'react'
 import { fireEvent, render as mount, screen } from '@testing-library/react'
-import { useRender, render, connect, renders, useLocal } from '../../src'
+import { useRender, render, connect, renders } from '../../src'
 import init from '../initial.config'
 
 describe('generate renders', function () {
@@ -75,13 +75,27 @@ describe('generate renders', function () {
         expect(renders(keyName)).toBe(2)
     })
 
-    it('local render', function () {
+    it('multirender', function () {
+        function Child1() {
+            useRender('child1')
+            return <h1>Child1</h1>
+        }
+
+        function Child2() {
+            useRender('child2')
+            return <h1>Child2</h1>
+        }
+
         function Component() {
-            const _render = useLocal()
-            expect(typeof _render === 'function').toBeTruthy()
-            return <h1>Hello</h1>
+            return (
+                <div>
+                    <Child1 />
+                    <Child2 />
+                </div>
+            )
         }
         mount(<Component />)
+        expect(render(['child1', 'child2'])).toBeTruthy()
     })
 
     it('local render with useRender', function () {

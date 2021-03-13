@@ -26,7 +26,7 @@ export default function renderingTypes(registers: Map<string, Registered>) {
     function render(keyName: string | string[], index?: number | string): boolean {
         let rendered: boolean = false
         if (Array.isArray(keyName)) {
-            for (const key in keyName) {
+            for (const key of keyName) {
                 rendered = getRenderRegister(key, index || '')()
             }
         } else {

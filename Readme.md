@@ -1,6 +1,5 @@
 Redity
 ========
-
 Render generator.
 
 ```
@@ -53,20 +52,9 @@ export default connect(KEYNAME)(MyComponent)
 
 ## Register Components
 
-There are three ways to register a component:
-* [connect](#Connect)
+There are two ways to register a component:
 * [capsule](#Capsule)
 * [useRender](#useRender)
-
-### [Connect](#Connect)
-
-```js
-import { connect } from 'redity'
-
-/** ... */
-
-export default connect('my_key')(Component)
-```
 
 ### [Capsule](#Capsule)
 
@@ -185,7 +173,6 @@ renders('Parent', ['children_2']) // 1
 ## Consider
 
 * If there are two components registered only by the same keyName, it will only be possible to render one. As a solution use the index.
-* Use constants for your KeyNames.
-* If you want to know the number of records use `Redity.size()`.
+* Use constants for your KeyNames and Indexs.
+* If you want to know the number of records use `size()`.
 * Use `Capsule` for small sections of the component and separate indeces. For example in rows of a table.
-* Use `connect` only when you want to get the prop sent by the parent component by the getProps method.
