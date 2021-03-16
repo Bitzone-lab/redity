@@ -35,10 +35,11 @@ export function handleClick() {
 ```js
 // MyComponent.js
 import React from 'react'
-import { connect } from 'redity'
+import { useRender } from 'redity'
 import { store, handleClick, KEYNAME } from './Controller'
 
-function MyComponent(){
+export default function MyComponent(){
+  useRender(KEYNAME)
   return (
     <div>
       <p>{ store.message }</p>
@@ -46,8 +47,6 @@ function MyComponent(){
     </div>
   )
 }
-
-export default connect(KEYNAME)(MyComponent)
 ```
 
 ## Register Components
@@ -178,3 +177,8 @@ renders('Parent', ['children_2']) // 1
 * Use constants for your KeyNames and Indexs.
 * If you want to know the number of records use `size()`.
 * Use `Capsule` for small sections of the component and separate indeces. For example in rows of a table.
+
+## Log
+* `connect` is deprecated, use `useRender` or `Capsule`
+* `getProps` removed
+* `useLocal` is deprecated, use `useRender`
