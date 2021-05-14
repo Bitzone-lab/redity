@@ -1,5 +1,5 @@
-import createHash from '../../src/utils/createHash'
-import { __keyNameIndex__, __separator__ } from '../../src/utils/tools'
+import createHash from '../src/utils/createHash'
+import { __keyNameIndex__, __separator__ } from '../src/utils/tools'
 
 describe('utils', function () {
     it('createHash', function () {

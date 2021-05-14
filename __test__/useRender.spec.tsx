@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom'
 import React from 'react'
-import { useRender, render, size } from '../../src'
+import { useRender, render } from '../src'
 import { render as mount, screen } from '@testing-library/react'
-import init from '../initial.config'
+import init from './initial.config'
 
 describe('useRender', function () {
     init()
@@ -19,6 +19,5 @@ describe('useRender', function () {
         expect(render(keyName)).toBeTruthy()
         expect(render('other_key')).toBeFalsy()
         expect(screen.getByText(count)).toBeInTheDocument()
-        expect(size()).toBe(1)
     })
 })

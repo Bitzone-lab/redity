@@ -2,6 +2,7 @@ Redity
 ========
 Render generator.
 
+[![install size](https://packagephobia.com/badge?p=redity)](https://packagephobia.com/result?p=redity)
 ```
 npm install redity
 ```

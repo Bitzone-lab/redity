@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom'
 import React from 'react'
 import { fireEvent, render as mount, screen } from '@testing-library/react'
-import { useRender, render, connect, renders } from '../../src'
-import init from '../initial.config'
+import { useRender, render, renders } from '../src'
+import init from './initial.config'
 
 describe('generate renders', function () {
     init()
@@ -58,6 +58,7 @@ describe('generate renders', function () {
         }
 
         function MainComponent() {
+            useRender(keyName)
             return (
                 <>
                     <Component1 />
@@ -66,9 +67,7 @@ describe('generate renders', function () {
             )
         }
 
-        const Wrapped = connect(keyName)(MainComponent)
-
-        mount(<Wrapped />)
+        mount(<MainComponent />)
         expect(render(keyName)).toBeTruthy()
         expect(render(keyName, index1)).toBeTruthy()
         expect(render(keyName, index2)).toBeTruthy()

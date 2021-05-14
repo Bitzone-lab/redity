@@ -1,6 +1,6 @@
 {
   "name": "redity",
-  "version": "1.0.0-alpha.5.1",
+  "version": "1.0.0-alpha.6",
   "description": "Render generator",
   "main": "lib/index.js",
   "types": "./types/index.d.ts",
@@ -13,7 +13,7 @@
     "tsc": "tsc",
     "lint": "eslint . --ext .ts",
     "types": "tsc --d --declarationDir ./types",
-    "pub": "npm run lint && npm run test && npm run types && npm run tsc && npm publish"
+    "lib": "npm run lint && npm run test && npm run types"
   },
   "keywords": [
     "hook",
@@ -26,7 +26,7 @@
     "lib",
     "types",
     "Readme.md",
-    "LICENSE.md"
+    "LICENSE"
   ],
   "author": "Erick <ertriilive@gmail.com> (https://github.com/ertrii)",
   "license": "MIT",
