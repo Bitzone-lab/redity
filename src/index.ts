@@ -1,5 +1,5 @@
-import createCapsule from './types/createCapsule'
-import createUseRender from './types/createUseRender'
+import createCapsule from './building/createCapsule'
+import createUseRender from './building/createUseRender'
 import renderingTypes from './rendering_types'
 import { PropsCapsule, Registered } from './typing'
 export * from './typing'

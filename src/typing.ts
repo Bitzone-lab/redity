@@ -12,25 +12,15 @@ export interface PropsCapsule<T = any> {
     /**
      * index aditional for render
      */
-    index?: string | number | undefined
+    index?: string | number
     /**
      * Send Props
      */
-    props?: T
+    props?: () => T | T
 }
-
-export type TypeComponent<T> = (props: React.PropsWithChildren<T>) => JSX.Element
-export type Wrapped<T> = (props: React.PropsWithChildren<T>) => JSX.Element
-type ConnectComponent<T> = (Component: TypeComponent<T>) => Wrapped<T>
-/**
- * Register component for render by key name
- * @param keyName key name
- * @param index index
- */
-export type Connect<T> = (keyName: string, index?: string | number) => ConnectComponent<T>
 
 export interface Registered {
     keyName: string
-    index: number | string | undefined
+    index?: number | string
     render: () => void | Promise<void>
 }

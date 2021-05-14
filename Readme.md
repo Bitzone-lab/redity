@@ -1,15 +1,14 @@
 Redity
 ========
-Render generator.
-
 [![install size](https://packagephobia.com/badge?p=redity)](https://packagephobia.com/result?p=redity)
+
+Render generator.
 ```
 npm install redity
 ```
 
 #### Requirements
 * react: "^16.8.0",
-* react-dom: "^16.8.0"
 
 ## Starting
 
@@ -118,9 +117,6 @@ Indexes are a way to subclass component subscriptions.
 All types of subscriptions have as a second parameter adding the index.
 
 ```js
-export default connect('my_key', 1)(Component)
-```
-```js
 <Capsule keyName="my_key" index={1}>
  ...
 </Capsule>
@@ -176,7 +172,6 @@ renders('Parent', ['children_2']) // 1
 
 * If there are two components registered only by the same keyName, it will only be possible to render one. As a solution use the index.
 * Use constants for your KeyNames and Indexs.
-* If you want to know the number of records use `size()`.
 * Use `Capsule` for small sections of the component and separate indeces. For example in rows of a table.
 
 ## Log
