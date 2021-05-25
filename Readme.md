@@ -1,6 +1,9 @@
 Redity
 ========
 [![install size](https://packagephobia.com/badge?p=redity)](https://packagephobia.com/result?p=redity)
+[![Package Quality](https://packagequality.com/shield/redity.svg)](https://packagequality.com/#?package=redity)
+[![David Dependencies](https://david-dm.org/Bitzone-lab/redity.svg)](https://david-dm.org/Bitzone-lab/redity)
+[![David Dev dependencies](https://status.david-dm.org/gh/Bitzone-lab/redity.svg?type=dev)](https://status.david-dm.org/gh/Bitzone-lab/redity.svg?type=dev)
 
 Render generator.
 ```
