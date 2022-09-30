@@ -1,19 +1,19 @@
-import { useRender } from "./redity";
+import { render, useRender } from "../redity";
 
 const state = {
   count: 0,
 };
 
 function App() {
-  const render = useRender();
+  useRender("App");
 
   function clickHandler() {
     state.count++;
-    render();
+    render("App");
   }
 
   return (
-    <div className="App">
+    <div className="app">
       <h1>Welcome Redity</h1>
       <p>
         Number: <b>{state.count}</b>
