@@ -1,70 +1,197 @@
-# Getting Started with Create React App
+# Redity
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![install size](https://packagephobia.com/badge?p=redity)](https://packagephobia.com/result?p=redity)
+[![Package Quality](https://packagequality.com/shield/redity.svg)](https://packagequality.com/#?package=redity)
 
-## Available Scripts
+Render generator.
 
-In the project directory, you can run:
+```
+npm install redity
+```
 
-### `npm start`
+#### Requirements
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- react: "^16.8.0",
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Starting
 
-### `npm test`
+The concept of Redity is to be able to generate renders from outside by its keyName to the registered components. The advantage comes when you want to take the logic out of the component and have a store that can be distributed to any component.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Manage the renders to the necessary components. This will lead to a better performance.
 
-### `npm run build`
+```js
+// Controller/index.js
+import { render } from "redity";
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+const KEYNAME = "MY_KEYNAME";
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+export const store = {
+  message: "",
+};
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+export function handleClick() {
+  store.message = "Welcome to Redity! 😄";
+  render(KEYNAME);
+}
+```
 
-### `npm run eject`
+```js
+// MyComponent.js
+import React from "react";
+import { useRender } from "redity";
+import { store, handleClick, KEYNAME } from "./Controller";
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+export default function MyComponent() {
+  useRender(KEYNAME);
+  return (
+    <div>
+      <p>{store.message}</p>
+      <button onClick={handleClick}>Click me! :D</button>
+    </div>
+  );
+}
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Register Components
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+There are two ways to register a component:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- [capsule](#Capsule)
+- [useRender](#useRender)
 
-## Learn More
+### [Capsule](#Capsule)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+`Capsule` will only record the section that is encapsulated.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```js
+import { Capsule } from 'redity'
 
-### Code Splitting
+export default function MyComponent(){
+    return (
+      <div>
+        <Capsule keyName='my_key'>
+          {() => <div>...<div/>}
+        </Capsule>
+      </div>
+    )
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+You can send props to the children component.
 
-### Analyzing the Bundle Size
+```jsx
+function Children(props) {
+  return <div>{props.name}</div>;
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```jsx
+<Capsule keyName="my_key" props={{ name: "Pacheco" }}>
+  {Children}
+</Capsule>
+```
 
-### Making a Progressive Web App
+### [useRender](#useRender)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```js
+import { useRender } from "redity";
 
-### Advanced Configuration
+export default function MyComponent() {
+  useRender("my_key");
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  return (
+    <div>
+      <div>...</div>
+    </div>
+  );
+}
+```
 
-### Deployment
+`All records are unique`. Each record requires a keyname to identify when you want to generate a render.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Render
 
-### `npm run build` fails to minify
+When a component is registered and it is deployed it is possible to generate a render. In order to generate a render you need to identify its KeyName.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```js
+import { render } from "redity";
+render("my_key"); // true
+// or more
+render(["my_key", "my_key2"]); // true
+```
+
+## Index
+
+Indexes are a way to subclass component subscriptions.
+All types of subscriptions have as a second parameter adding the index.
+
+```js
+<Capsule keyName="my_key" index={1}>
+  ...
+</Capsule>
+```
+
+```js
+useRender("my_key", 1);
+```
+
+To generate a render pass it the keyName and index.
+
+```js
+import { render } from "redity";
+render("my_key", 1);
+```
+
+## Renders
+
+With the indices we can generate rendering groups in parallel.
+
+Keep in mind that it will generate render only those that are registered by their index. Thanks to this you only need to pass the keyName.
+
+```js
+function Children1() {
+  useRender("Parent", "children_1");
+  return <p>Children 1</p>;
+}
+
+function Children2() {
+  useRender("Parent", "children_2");
+  return <p>Children 2</p>;
+}
+
+function Parent() {
+  useRender("Parent");
+  return (
+    <div>
+      <Children1 />
+      <Children2 />
+    </div>
+  );
+}
+```
+
+```js
+import { renders } from "redity";
+renders("Parent"); // 2
+```
+
+Renders will return the sum of the generated renders. One render for each child component.
+
+You can skip some indexes
+
+```js
+import { renders } from "redity";
+renders("Parent", ["children_2"]); // 1
+```
+
+## Consider
+
+- If there are two components registered only by the same keyName, it will only be possible to render one. As a solution use the index.
+- Use constants for your KeyNames and Indexs.
+- Use `Capsule` for small sections of the component and separate indeces. For example in rows of a table.
+
+## Log
+
+- `connect` is deprecated, use `useRender` or `Capsule`
+- `getProps` removed
+- `useLocal` is deprecated, use `useRender`
