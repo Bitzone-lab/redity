@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { store } from "./store";
-import createHash from "./utils/createHash";
+import createHash from "./createHash";
 
 /**
  * @param {string=} keyName
@@ -13,16 +13,35 @@ export function useRender(keyName, index) {
 
   useEffect(() => {
     if (!keyName) return;
-    if (store.has(keyName)) return;
 
-    store.set(keyName, {
-      keyName,
-      index,
-      render: renderHandler,
-    });
+    const hasStore = store.has(keyName);
+
+    if (!hasStore) {
+      const fakeRender = () => null;
+      store.set(keyName, {
+        keyName,
+        indexed: {},
+        render: index !== undefined ? fakeRender : renderHandler,
+      });
+    }
+
+    const storeData = store.get(keyName);
+
+    if (index !== undefined) {
+      storeData.indexed = {
+        ...storeData.indexed,
+        [index.toString()]: renderHandler,
+      };
+    } else {
+      storeData.render = renderHandler;
+    }
 
     return () => {
-      store.delete(keyName);
+      if (index !== undefined) {
+        delete store.get(keyName).indexed[index.toString()];
+      } else {
+        store.delete(keyName);
+      }
     };
   }, []);
 

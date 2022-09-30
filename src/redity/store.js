@@ -2,7 +2,7 @@
  * @typedef StoreData
  * @type {object}
  * @property {string} keyName
- * @property {string|number=} index
+ * @property {Record<string, () => void>} indexed
  * @property {()=> void} render
  */
 

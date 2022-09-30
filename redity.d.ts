@@ -21,7 +21,8 @@ declare module "redity" {
   /**
    * Render various indexed components related to the keyName.
    * @param keyName identificator.
+   * @param omits omit indexed
    */
-  declare const renders: (keyName: string) => void;
+  declare const renders: (keyName: string, omits?: (string | number)[]) => void;
   export { useRender, render, renders };
 }

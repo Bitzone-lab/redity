@@ -6,7 +6,6 @@
   "types": "redity.d.ts",
   "bugs": "https://github.com/Bitzone-lab/redity/issues",
   "repository": "https://github.com/Bitzone-lab/redity",
-  "homepage": "https://github.com/Bitzone-lab",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -51,10 +50,14 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "react-syntax-highlighter": "^15.5.0",
     "web-vitals": "^2.1.4"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
     "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "dependencies": {
+    "react-router-dom": "^6.4.1"
   }
 }

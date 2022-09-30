@@ -1,7 +1,83 @@
 .app {
-  max-width: 920px;
+  max-width: 720px;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 2em;
+  padding-top: 0.5em;
   padding-bottom: 1em;
+}
+
+.app nav {
+  margin-bottom: 2em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app nav h1 {
+  font-size: 2em;
+}
+
+.app nav a {
+  color: var(--gray);
+  font-weight: 500;
+}
+
+.app main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebar {
+  width: 150px;
+  padding-top: 3em;
+}
+
+.sidebar ul {
+  list-style-position: inside;
+}
+
+.sidebar li {
+  color: var(--primary);
+}
+
+.sidebar a {
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.sidebar a:hover {
+  color: var(--primary);
+}
+
+.sidebar a.active {
+  font-weight: bold;
+}
+
+section {
+  max-width: 600px;
+}
+
+.box {
+  border: 1px solid var(--light);
+  margin-top: 0.5sem;
+  margin-bottom: 1em;
+  padding: 1em;
+  border-radius: 0.4em;
+}
+
+.box button {
+  margin-top: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  border: 1px solid var(--light);
+  background-image: linear-gradient(white, var(--light));
+  cursor: pointer;
+  color: var(--primary);
+}
+
+.box button:active {
+  background-image: linear-gradient(var(--light), white);
 }
