@@ -3,8 +3,22 @@ import conceptSrc from "../images/concept.jpg";
 
 export default function Introduction() {
   return (
-    <div>
+    <div className="introduction">
       <h2>Introduction</h2>
+      <div>
+        <img
+          className="badge"
+          src="https://packagephobia.com/badge?p=redity"
+          alt=""
+          width="20"
+        />
+        <img
+          className="badge"
+          src="https://packagequality.com/shield/redity.svg"
+          alt=""
+          width="20"
+        />
+      </div>
       <p>
         <b>Redity</b> is a library for render control. Intended to have states
         outside the component tree.

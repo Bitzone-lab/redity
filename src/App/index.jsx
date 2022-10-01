@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Indexed from "./Indexed";
-import Introduction from "./Introduction";
-import Rendering from "./Rendering";
 import Sidebar from "./Sidebar";
+import Introduction from "./Introduction";
 import Started from "./Started";
+import Rendering from "./Rendering";
+import Indexed from "./Indexed";
 
 const router = createBrowserRouter([
   {

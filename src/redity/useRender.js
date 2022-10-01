@@ -37,8 +37,11 @@ export function useRender(keyName, index) {
     }
 
     return () => {
-      if (index !== undefined) {
-        delete store.get(keyName).indexed[index.toString()];
+      if (index !== undefined && store.has(keyName)) {
+        const hasIndexed = !!store.get(keyName).indexed[index.toString()];
+        if (hasIndexed) {
+          delete store.get(keyName).indexed[index.toString()];
+        }
       } else {
         store.delete(keyName);
       }
