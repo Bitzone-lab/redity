@@ -14,8 +14,11 @@ export default function Sidebar() {
                 isActive && pathname === "/" ? "active" : ""
               }
             >
-              Started
+              Introduction
             </NavLink>
+          </li>
+          <li>
+            <NavLink to="/started">Started</NavLink>
           </li>
           <li>
             <NavLink to="/rendering">Rendering</NavLink>

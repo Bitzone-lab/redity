@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Indexed from "./Indexed";
+import Introduction from "./Introduction";
 import Rendering from "./Rendering";
 import Sidebar from "./Sidebar";
 import Started from "./Started";
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        element: <Introduction />,
+      },
+      {
+        path: "/started",
         element: <Started />,
       },
       {

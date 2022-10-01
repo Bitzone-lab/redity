@@ -21,19 +21,18 @@ html {
 p,
 b,
 a,
-p span {
+p span,
+h1,
+h2,
+h3,
+h4,
+ul,
+li {
   color: var(--dark);
 }
 
 pre {
   border: 1px solid var(--light);
-}
-
-h1,
-h2,
-h3,
-h4 {
-  color: var(--dark);
 }
 
 h2,
@@ -52,4 +51,14 @@ h6 {
   font-size: 14px;
   color: var(--primary);
   text-decoration: underline;
+}
+
+ul {
+  margin-top: 1em;
+  list-style-position: inside;
+}
+
+hr {
+  border-top: 1px solid var(--primary);
+  margin: 2em 0;
 }
