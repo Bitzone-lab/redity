@@ -8,6 +8,8 @@ Render generator. Redity Is a library for render control. Intended to have state
 npm install redity
 ```
 
+Read the documentation [here](https://bitzone-lab.github.io/redity/#/).
+
 #### [Example](#example)
 
 ```js
