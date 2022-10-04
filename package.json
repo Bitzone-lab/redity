@@ -1,7 +1,7 @@
 {
   "name": "redity",
   "version": "1.0.0-rc.1",
-  "description": "Render generator",
+  "description": "Library for render control",
   "main": "lib/index.js",
   "types": "redity.d.ts",
   "bugs": "https://github.com/Bitzone-lab/redity/issues",
@@ -23,7 +23,7 @@
   ],
   "files": [
     "lib",
-    "types",
+    "redity.d.ts",
     "Readme.md",
     "LICENSE"
   ],
