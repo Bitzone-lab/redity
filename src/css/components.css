@@ -19,3 +19,15 @@
 .box button:active {
   background-image: linear-gradient(var(--light), white);
 }
+
+.menu div {
+  width: 16px;
+  height: 2px;
+  background-color: var(--dark);
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+
+.menu div:last-child {
+  margin-bottom: 0;
+}

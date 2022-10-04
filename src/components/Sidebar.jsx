@@ -1,11 +1,19 @@
+import { useContext } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
+import LayoutContext from "../contexts/layout-context";
 
 export default function Sidebar() {
   const pathname = useLocation().pathname;
+  const { isOpenSidebar } = useContext(LayoutContext);
 
   return (
-    <>
-      <aside className="sidebar">
+    <main>
+      <aside
+        className="sidebar"
+        style={{
+          left: isOpenSidebar ? "0%" : "-100%",
+        }}
+      >
         <ul>
           <li>
             <NavLink
@@ -31,6 +39,6 @@ export default function Sidebar() {
       <section>
         <Outlet />
       </section>
-    </>
+    </main>
   );
 }

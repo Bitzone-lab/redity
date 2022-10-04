@@ -1,8 +1,10 @@
+import Page from "../components/Page";
+
 export default function PageNotFound() {
   return (
-    <div>
+    <Page>
       <h2>404</h2>
       <p>Page Not Found</p>
-    </div>
+    </Page>
   );
 }

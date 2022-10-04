@@ -5,6 +5,9 @@ import Started from "./Started";
 import Rendering from "./Rendering";
 import Groups from "./Groups";
 import PageNotFound from "./PageNotFound";
+import Menu from "../components/Menu";
+import { useState } from "react";
+import LayoutContext from "../contexts/layout-context";
 
 const router = createHashRouter([
   {
@@ -36,10 +39,17 @@ const router = createHashRouter([
 ]);
 
 export default function App() {
+  const [isOpenSidebar, setIsOpenSidebar] = useState(false);
+
   return (
     <div className="app">
-      <nav>
-        <h1>Redity</h1>
+      <nav
+        style={{ opacity: isOpenSidebar ? ".5" : "1", transition: ".3s ease" }}
+      >
+        <div>
+          <Menu onClick={() => setIsOpenSidebar(!isOpenSidebar)} />
+          <h1>Redity</h1>
+        </div>
         <div>
           <img
             className="badge"
@@ -55,9 +65,9 @@ export default function App() {
           </a>
         </div>
       </nav>
-      <main>
+      <LayoutContext.Provider value={{ isOpenSidebar, setIsOpenSidebar }}>
         <RouterProvider router={router} />
-      </main>
+      </LayoutContext.Provider>
     </div>
   );
 }

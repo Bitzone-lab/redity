@@ -1,4 +1,5 @@
 import LineCode from "../components/LineCode";
+import Page from "../components/Page";
 import Syntax from "../components/Syntax";
 import { renders, useRender } from "../redity";
 
@@ -91,7 +92,7 @@ function Action() {
 
 export default function Groups() {
   return (
-    <div>
+    <Page>
       <h2>Groups</h2>
       <p>
         It can be overwhelming to think about creating multiple keyNames. You
@@ -126,6 +127,6 @@ export default function Groups() {
       <Syntax code={codeOmit} />
       <p>If you want to render only one component in the group, use render.</p>
       <LineCode>render("Group", 1);</LineCode>
-    </div>
+    </Page>
   );
 }

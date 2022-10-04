@@ -1,5 +1,6 @@
 import { useRender } from "../redity";
 import Syntax from "../components/Syntax";
+import Page from "../components/Page";
 
 const codeString = `import { useRender } from "redity";
 
@@ -36,7 +37,7 @@ export default function Started() {
   }
 
   return (
-    <div>
+    <Page>
       <h2>Started</h2>
       <p>
         This would be an example of a simple <b>local render</b> counter.
@@ -49,6 +50,6 @@ export default function Started() {
       <p>
         <b>useRender</b> returns a method for local rendering.
       </p>
-    </div>
+    </Page>
   );
 }

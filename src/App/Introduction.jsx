@@ -1,9 +1,10 @@
 import LineCode from "../components/LineCode";
+import Page from "../components/Page";
 import conceptSrc from "../images/concept.jpg";
 
 export default function Introduction() {
   return (
-    <div className="introduction">
+    <Page className="introduction">
       <h2>Introduction</h2>
       <div className="badges">
         <img
@@ -41,6 +42,6 @@ export default function Introduction() {
         </li>
         <li>Typescript</li>
       </ul>
-    </div>
+    </Page>
   );
 }

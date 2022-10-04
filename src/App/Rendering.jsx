@@ -1,4 +1,5 @@
 import LineCode from "../components/LineCode";
+import Page from "../components/Page";
 import Syntax from "../components/Syntax";
 import { render, useRender } from "../redity";
 
@@ -94,7 +95,7 @@ function Component2() {
 
 export default function Rendering() {
   return (
-    <div>
+    <Page>
       <h2>Rendering</h2>
       <p>
         Redity requires registering components in order to control their
@@ -134,6 +135,6 @@ export default function Rendering() {
       <h3>Component2.jsx</h3>
       <Component2 />
       <Syntax code={codeComponent2} />
-    </div>
+    </Page>
   );
 }

@@ -1,6 +1,7 @@
 {
   "short_name": "Redity",
-  "name": "Library for render control",
+  "name": "Redity",
+  "description": "Library for render control",
   "icons": [
     {
       "src": "favicon.ico",

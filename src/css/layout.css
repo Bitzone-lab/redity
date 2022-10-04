@@ -20,7 +20,11 @@
   font-size: 2em;
 }
 
-.app nav div {
+.app nav .menu {
+  display: none;
+}
+
+.app nav > div {
   display: flex;
   align-items: center;
 }
@@ -43,6 +47,10 @@
 .sidebar {
   width: 150px;
   padding-top: 2em;
+}
+
+.sidebar ul {
+  position: fixed;
 }
 
 .sidebar li {
@@ -79,4 +87,40 @@ img.badge {
   max-height: 16px;
   display: inline;
   width: auto;
+}
+
+@media (max-width: 450px) {
+  .app nav {
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+    margin-bottom: 0.6em;
+  }
+  .app nav h1 {
+    font-size: 1.2em;
+    margin-left: 0.4em;
+  }
+  .app nav .menu {
+    display: initial;
+  }
+  .app nav a {
+    font-size: 12px;
+  }
+  .app .sidebar {
+    position: fixed;
+    transition: 0.3s ease;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+    box-shadow: 5px 1px 10px -10px var(--dark);
+    padding: 1em;
+    height: 100%;
+  }
+  .sidebar ul {
+    position: relative;
+  }
+
+  section {
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+  }
 }
