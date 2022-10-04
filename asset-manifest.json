@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/redity/static/css/main.8a959e47.css",
-    "main.js": "/redity/static/js/main.124aaa19.js",
+    "main.css": "/redity/static/css/main.f95ceb57.css",
+    "main.js": "/redity/static/js/main.ac9ee2b4.js",
     "static/js/787.f93a1803.chunk.js": "/redity/static/js/787.f93a1803.chunk.js",
     "static/media/concept.jpg": "/redity/static/media/concept.1f22531a3a68c73d79ea.jpg",
     "index.html": "/redity/index.html",
-    "main.8a959e47.css.map": "/redity/static/css/main.8a959e47.css.map",
-    "main.124aaa19.js.map": "/redity/static/js/main.124aaa19.js.map",
+    "main.f95ceb57.css.map": "/redity/static/css/main.f95ceb57.css.map",
+    "main.ac9ee2b4.js.map": "/redity/static/js/main.ac9ee2b4.js.map",
     "787.f93a1803.chunk.js.map": "/redity/static/js/787.f93a1803.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8a959e47.css",
-    "static/js/main.124aaa19.js"
+    "static/css/main.f95ceb57.css",
+    "static/js/main.ac9ee2b4.js"
   ]
 }
