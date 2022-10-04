@@ -24,7 +24,7 @@ export default function Sidebar() {
             <NavLink to="/rendering">Rendering</NavLink>
           </li>
           <li>
-            <NavLink to="/indexed">Indexed</NavLink>
+            <NavLink to="/groups">Groups</NavLink>
           </li>
         </ul>
       </aside>

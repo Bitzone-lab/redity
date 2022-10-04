@@ -9,7 +9,7 @@ const LineCode = ({ children }) => {
   return (
     <SyntaxHighlighter
       customStyle={{ marginTop: "0.6em", padding: "0.4em 1em" }}
-      language="markdown"
+      language="typescript"
       style={oneLight}
     >
       {children}

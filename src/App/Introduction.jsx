@@ -5,12 +5,16 @@ export default function Introduction() {
   return (
     <div className="introduction">
       <h2>Introduction</h2>
-      <div>
+      <div className="badges">
+        <img
+          className="badge"
+          src="https://badge.fury.io/js/redity.svg"
+          alt=""
+        />
         <img
           className="badge"
           src="https://packagephobia.com/badge?p=redity"
           alt=""
-          width="20"
         />
         <img
           className="badge"
@@ -25,7 +29,7 @@ export default function Introduction() {
       </p>
       <img src={conceptSrc} alt="concept" />
       <p>
-        States and handles are global and allow you to be within reach of any
+        The states and the handles are global and allow to be reachable by any
         component.
       </p>
       <h3>Installation</h3>

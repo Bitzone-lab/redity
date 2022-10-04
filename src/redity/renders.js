@@ -10,7 +10,7 @@ export function renders(keyName, omits = []) {
   const storeData = store.get(keyName);
 
   Object.entries(storeData.indexed).forEach(([key, render]) => {
-    if (!omits.includes(key)) {
+    if (!omits.map((key) => key.toString()).includes(key)) {
       render();
     }
   });

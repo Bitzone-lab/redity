@@ -31,6 +31,10 @@ li {
   color: var(--dark);
 }
 
+p {
+  margin-bottom: 0.4em;
+}
+
 pre {
   border: 1px solid var(--light);
 }

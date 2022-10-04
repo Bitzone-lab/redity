@@ -1,11 +1,12 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Sidebar from "./Sidebar";
+import { RouterProvider, createHashRouter } from "react-router-dom";
+import Sidebar from "../components/Sidebar";
 import Introduction from "./Introduction";
 import Started from "./Started";
 import Rendering from "./Rendering";
-import Indexed from "./Indexed";
+import Groups from "./Groups";
+import PageNotFound from "./PageNotFound";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <Sidebar />,
@@ -23,8 +24,12 @@ const router = createBrowserRouter([
         element: <Rendering />,
       },
       {
-        path: "/indexed",
-        element: <Indexed />,
+        path: "/groups",
+        element: <Groups />,
+      },
+      {
+        path: "*",
+        element: <PageNotFound />,
       },
     ],
   },
@@ -35,13 +40,20 @@ export default function App() {
     <div className="app">
       <nav>
         <h1>Redity</h1>
-        <a
-          href="https://github.com/Bitzone-lab/redity"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Source
-        </a>
+        <div>
+          <img
+            className="badge"
+            src="https://badge.fury.io/js/redity.svg"
+            alt=""
+          />
+          <a
+            href="https://github.com/Bitzone-lab/redity"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Source
+          </a>
+        </div>
       </nav>
       <main>
         <RouterProvider router={router} />

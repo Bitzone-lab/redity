@@ -3,11 +3,12 @@
   margin-left: auto;
   margin-right: auto;
   padding-top: 0.5em;
-  padding-bottom: 1em;
+  padding-bottom: 2em;
 }
 
 .app nav {
   margin-bottom: 2em;
+  padding-top: 0.3em;
   padding-bottom: 0.3em;
   border-bottom: 1px solid var(--light);
   display: flex;
@@ -19,9 +20,19 @@
   font-size: 2em;
 }
 
+.app nav div {
+  display: flex;
+  align-items: center;
+}
+
+.app nav div .badge {
+  margin-bottom: -4px;
+}
+
 .app nav a {
   color: var(--gray);
   font-weight: 500;
+  margin-left: 0.8em;
 }
 
 .app main {
@@ -61,4 +72,11 @@ section {
 img {
   width: 100%;
   margin-top: 0.5em;
+}
+
+img.badge {
+  margin: 0;
+  max-height: 16px;
+  display: inline;
+  width: auto;
 }

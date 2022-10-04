@@ -8,11 +8,11 @@ const state = {
 };
 
 export default function Counter() {
-  const render = useRender();
+  const localRender = useRender();
 
   function clickHandler() {
     state.counter++;
-    render();
+    localRender();
   }
 
   return (
@@ -28,11 +28,11 @@ const state = {
 };
 
 export default function Started() {
-  const render = useRender();
+  const localRender = useRender();
 
   function clickHandler() {
     state.counter++;
-    render();
+    localRender();
   }
 
   return (
@@ -46,6 +46,9 @@ export default function Started() {
         <button onClick={clickHandler}>Count</button>
       </div>
       <Syntax code={codeString} />
+      <p>
+        <b>useRender</b> returns a method for local rendering.
+      </p>
     </div>
   );
 }
