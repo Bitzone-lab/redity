@@ -1,6 +1,6 @@
 {
   "name": "redity",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0",
   "description": "Library for render control",
   "main": "lib/index.js",
   "types": "redity.d.ts",

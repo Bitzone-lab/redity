@@ -30,7 +30,6 @@ export function handleClick() {
 
 ```js
 // MyComponent.jsx
-import React from "react";
 import { useRender } from "redity";
 import { store, handleClick, KEYNAME } from "./Controller";
 
