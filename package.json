@@ -6,7 +6,10 @@
   "types": "redity.d.ts",
   "bugs": "https://github.com/Bitzone-lab/redity/issues",
   "repository": "https://github.com/Bitzone-lab/redity",
+  "homepage": "https://Bitzone-lab.github.io/redity",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -51,6 +54,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "babel-preset-minify": "^0.5.2",
+    "gh-pages": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.1",

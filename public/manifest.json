@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Redity",
+  "name": "Library for render control",
   "icons": [
     {
       "src": "favicon.ico",

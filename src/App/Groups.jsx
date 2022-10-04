@@ -124,6 +124,8 @@ export default function Groups() {
       <hr />
       <p>You can omit some components of the group, indicating their index.</p>
       <Syntax code={codeOmit} />
+      <p>If you want to render only one component in the group, use render.</p>
+      <LineCode>render("Group", 1);</LineCode>
     </div>
   );
 }
