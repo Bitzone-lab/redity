@@ -5,24 +5,18 @@ declare module "redity" {
    * @param index register multiple components related to the keyName.
    * @return local render method
    */
-  declare const useRender: (
-    keyName?: string,
-    index?: string | number
-  ) => () => void;
+  const useRender: (keyName?: string, index?: string | number) => () => void;
   /**
    * Renders by keyName
    * @param keyName identificator for render
    * @param index index of the component related to the keyName.
    */
-  declare const render: (
-    keyName: string | string[],
-    index?: string | number
-  ) => void;
+  const render: (keyName: string | string[], index?: string | number) => void;
   /**
    * Render various indexed components related to the keyName.
    * @param keyName identificator.
    * @param omits omit indexed
    */
-  declare const renders: (keyName: string, omits?: (string | number)[]) => void;
+  const renders: (keyName: string, omits?: (string | number)[]) => void;
   export { useRender, render, renders };
 }
