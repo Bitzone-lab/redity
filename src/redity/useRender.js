@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { store } from "./store";
-import createHash from "./createHash";
 
 /**
  * @param {string=} keyName
@@ -9,7 +8,7 @@ import createHash from "./createHash";
  * @returns
  */
 export function useRender(keyName, index) {
-  const [, render] = useState(() => createHash());
+  const [, render] = useState();
 
   useEffect(() => {
     if (!keyName) return;
@@ -49,7 +48,7 @@ export function useRender(keyName, index) {
   }, []);
 
   function renderHandler() {
-    render(createHash());
+    render({});
   }
 
   return renderHandler;
